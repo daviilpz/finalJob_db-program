@@ -2,10 +2,12 @@
  * 
  */
 /**
- * @author david
+ * @author Rafa2
  *
  */
-module PROYECTO_FIN {
-	requires java.sql;
+module Trabajo_FINDECURSO {
 	requires java.desktop;
+	requires java.sql;
+	requires java.base;
+	requires db4o;
 }

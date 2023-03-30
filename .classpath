@@ -6,7 +6,12 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/david/Downloads/Programacion-tema17-recursos/mysql-connector-java-8.0.20.jar">
+	<classpathentry kind="lib" path="C:/Users/Rafa2/Desktop/Proyectos Eclipse IDE/Trabajo_FINDECURSO/src/mysql-connector-java-8.0.20.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/Rafa2/Desktop/Proyectos Eclipse IDE/Ejercicios_Tema18/src/db4o-8.0.184.15484-all-java5.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>

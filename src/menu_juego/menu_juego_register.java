@@ -36,11 +36,13 @@ public class menu_juego_register extends JFrame {
 		campousuario.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("Introduzca su nombre de usuario");
+		lblNewLabel.setForeground(new Color(0, 255, 255));
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblNewLabel.setBounds(54, 125, 219, 30);
 		getContentPane().add(lblNewLabel);
 		
 		JLabel lblIntroduzcaSuContrasea = new JLabel("Introduzca su contraseña");
+		lblIntroduzcaSuContrasea.setForeground(new Color(0, 255, 255));
 		lblIntroduzcaSuContrasea.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblIntroduzcaSuContrasea.setBounds(54, 204, 219, 30);
 		getContentPane().add(lblIntroduzcaSuContrasea);
@@ -50,6 +52,7 @@ public class menu_juego_register extends JFrame {
 		getContentPane().add(campopass);
 		
 		JLabel lblConfirmeSuContrasea = new JLabel("Confirme su contraseña");
+		lblConfirmeSuContrasea.setForeground(new Color(0, 255, 255));
 		lblConfirmeSuContrasea.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblConfirmeSuContrasea.setBounds(54, 277, 219, 30);
 		getContentPane().add(lblConfirmeSuContrasea);
@@ -59,6 +62,7 @@ public class menu_juego_register extends JFrame {
 		getContentPane().add(campoconfirmarpass);
 		
 		JLabel lblIntroduzcaSuNombre = new JLabel("Introduzca su nombre");
+		lblIntroduzcaSuNombre.setForeground(new Color(255, 128, 0));
 		lblIntroduzcaSuNombre.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblIntroduzcaSuNombre.setBounds(54, 58, 219, 30);
 		getContentPane().add(lblIntroduzcaSuNombre);
@@ -67,6 +71,11 @@ public class menu_juego_register extends JFrame {
 		camponombre.setColumns(10);
 		camponombre.setBounds(362, 60, 200, 30);
 		getContentPane().add(camponombre);
+		
+		JLabel lblNewLabel_1 = new JLabel("New label");
+		lblNewLabel_1.setBounds(0, 0, 606, 463);
+		lblNewLabel_1.setIcon(new ImageIcon(new ImageIcon("src/imagenes/image.jpg").getImage().getScaledInstance(600, 400, getDefaultCloseOperation())));
+		getContentPane().add(lblNewLabel_1);
 		
 		
 // Llamada a la Acción del Botón Registrar
@@ -102,14 +111,14 @@ public class menu_juego_register extends JFrame {
 		
 // Comprobamos que estén todos rellenos
 		if (nombre.isEmpty() || usuario.isEmpty() || pass.isEmpty() || confirmarpass.isEmpty()) {
-			JOptionPane.showMessageDialog(this, "Por favor introduzca todos los campos", "prueba de nuevo",
+			JOptionPane.showMessageDialog(this, "Por favor introduzca todos los campos", "ERROR",
 					JOptionPane.ERROR_MESSAGE);
 			return;
 		}
 
 // Comprobamos que la contraseña es igual en ambos campos
 		if (!pass.equals(confirmarpass)) {
-			JOptionPane.showMessageDialog(this, "Las contraseñas no coinciden ", "Prueba de nuevo",
+			JOptionPane.showMessageDialog(this, "Las contraseñas no coinciden ", "ERROR",
 					JOptionPane.ERROR_MESSAGE);
 			return;
 		}
@@ -123,11 +132,11 @@ public class menu_juego_register extends JFrame {
 		//EL USER, DEBEMOS PROBAR EN ESTAS LÍNEAS UN MÉTODO USANDO UN TRY/CATCH.
 		user = addUserToDatabase(nombre, usuario, pass);
 		if (user != null) {
-			JOptionPane.showMessageDialog(this, "Usuario registrado correctamente.", "Vuelve a intentarlo",
+			JOptionPane.showMessageDialog(this, "Usuario registrado correctamente.", "Información",
 					JOptionPane.INFORMATION_MESSAGE);
 			dispose();
 		} else {
-			JOptionPane.showMessageDialog(this, "ERROR al insertar el Usuario", "Vuelve a intentarlo",
+			JOptionPane.showMessageDialog(this, "ERROR al insertar el Usuario", "ERROR",
 					JOptionPane.ERROR_MESSAGE);
 			return;
 		}

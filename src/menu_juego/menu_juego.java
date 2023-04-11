@@ -6,10 +6,13 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
+import javax.imageio.ImageIO;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import java.awt.Toolkit;
 import java.awt.EventQueue;
@@ -33,19 +36,23 @@ public class menu_juego extends JFrame {
 			public void run() {
 				try {
 					menu_juego frame = new menu_juego();
+				    frame.setIconImage(Toolkit.getDefaultToolkit().createImage("src/imagenes/icon.png"));
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
+					
 				}
+				
 			}
+			
 		});
+		
 	}
 
 	/**
 	 * Create the frame.
 	 */
 	public menu_juego() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Rafa2\\Downloads\\logo.png"));
 		setEnabled(true);
 		setResizable(false);
 		setTitle("Menú Principal");
@@ -72,7 +79,12 @@ public class menu_juego extends JFrame {
 		contentPane.add(btnRegistrarse);
 		
 		JButton btnNewButton_1 = new JButton("Nueva Partida");
-		btnNewButton_1.setIcon(new ImageIcon(new ImageIcon("C:\\Users\\Rafa2\\Downloads\\png-transparent-pink-paint-dripping-watercolor-painting-drip-painting-desktop-painted-blue-text-color-thumbnail.png").getImage().getScaledInstance(2, 600, getDefaultCloseOperation())));
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		
+		
 		btnNewButton_1.setFont(new Font("Arial", Font.BOLD, 20));
 		btnNewButton_1.setBounds(261, 175, 235, 45);
 		contentPane.add(btnNewButton_1);
@@ -85,14 +97,21 @@ public class menu_juego extends JFrame {
 		contentPane.add(btnNewButton_2);
 		
 		JButton btnNewButton_3 = new JButton("Ranking");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		
+		
 		btnNewButton_3.setFont(new Font("Arial", Font.BOLD, 20));
 		btnNewButton_3.setBounds(261, 253, 235, 45);
 		contentPane.add(btnNewButton_3);
 		
 		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setIcon(new ImageIcon(new ImageIcon("C:\\Users\\Rafa2\\Downloads\\fondo menu.jpg").getImage().getScaledInstance(800, 600, getDefaultCloseOperation())));
 		lblNewLabel.setBounds(0, 0, 786, 563);
-		lblNewLabel.setBackground(new Color(0,0,0,128));
+		lblNewLabel.setIcon(new ImageIcon(new ImageIcon("src/imagenes/fondo_menu.jpg").getImage().getScaledInstance(820, 620, getDefaultCloseOperation())));	    
 		contentPane.add(lblNewLabel);
+		
+
 	}
 }

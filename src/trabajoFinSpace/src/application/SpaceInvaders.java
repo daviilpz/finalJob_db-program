@@ -97,13 +97,13 @@ public class SpaceInvaders extends Application {
 		gc.setTextAlign(TextAlignment.CENTER);
 		gc.setFont(Font.font(20));
 		gc.setFill(Color.WHITE);
-		gc.fillText("Score: " + score, 60,  20);
+		gc.fillText("Puntuación: " + score, 60,  20);
 	
 		
 		if(gameOver) {
 			gc.setFont(Font.font(35));
 			gc.setFill(Color.YELLOW);
-			gc.fillText("Game Over \n Your Score is: " + score + " \n Click to play again", WIDTH / 2, HEIGHT /2.5);
+			gc.fillText("Game Over! \n Tu puntuación ha sido de: " + score + " puntos" + " \n Haz click para jugar de nuevo.", WIDTH / 2, HEIGHT /2.5);
 		//	return;
 		}
 		univ.forEach(Universe::draw);

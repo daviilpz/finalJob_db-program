@@ -57,8 +57,9 @@ public class menu_juego extends JFrame {
 		setResizable(false);
 		setTitle("Menú Principal");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 800, 600);
+		setBounds(100, 100, 655, 550);
 		contentPane = new JPanel();
+		setLocationRelativeTo(null);
 		contentPane.setBorder(new LineBorder(new Color(0, 0, 0), 0));
 
 		setContentPane(contentPane);
@@ -75,25 +76,26 @@ public class menu_juego extends JFrame {
 		}
 			);
 		btnRegistrarse.setFont(new Font("Arial", Font.BOLD, 12));
-		btnRegistrarse.setBounds(646, 10, 130, 45);
+		btnRegistrarse.setBounds(510, 10, 172, 60);
 		contentPane.add(btnRegistrarse);
 		
 		JButton btnNewButton_1 = new JButton("Nueva Partida");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				SpaceInvaders.launch(SpaceInvaders.class);
 			}
 		});
 		
 		
 		btnNewButton_1.setFont(new Font("Arial", Font.BOLD, 20));
-		btnNewButton_1.setBounds(261, 175, 235, 45);
+		btnNewButton_1.setBounds(184, 82, 288, 84);
 		contentPane.add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("Salir del juego");
 		btnNewButton_2.setFont(new Font("Arial", Font.BOLD, 20));
 		//addActionListener e -> dispose para que se cierre la ventana 
 		btnNewButton_2.addActionListener(e -> dispose());
-		btnNewButton_2.setBounds(261, 334, 235, 45);
+		btnNewButton_2.setBounds(184, 356, 288, 84);
 		contentPane.add(btnNewButton_2);
 		
 		JButton btnNewButton_3 = new JButton("Ranking");
@@ -104,12 +106,12 @@ public class menu_juego extends JFrame {
 		
 		
 		btnNewButton_3.setFont(new Font("Arial", Font.BOLD, 20));
-		btnNewButton_3.setBounds(261, 253, 235, 45);
+		btnNewButton_3.setBounds(184, 211, 288, 84);
 		contentPane.add(btnNewButton_3);
 		
 		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setBounds(0, 0, 786, 563);
-		lblNewLabel.setIcon(new ImageIcon(new ImageIcon("src/imagenes/fondo_menu.jpg").getImage().getScaledInstance(820, 620, getDefaultCloseOperation())));	    
+		lblNewLabel.setBounds(0, 0, 686, 513);
+		lblNewLabel.setIcon(new ImageIcon(new ImageIcon("src/imagenes/fondo_menu.jpg").getImage().getScaledInstance(644, 550, getDefaultCloseOperation())));	    
 		contentPane.add(lblNewLabel);
 		
 

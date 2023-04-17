@@ -74,7 +74,7 @@ public class menu_juego_register extends JFrame {
 		
 		JLabel lblNewLabel_1 = new JLabel("New label");
 		lblNewLabel_1.setBounds(0, 0, 619, 463);
-		lblNewLabel_1.setIcon(new ImageIcon(new ImageIcon("src/imagenes/image.jpg").getImage().getScaledInstance(600, 480, getDefaultCloseOperation())));
+		lblNewLabel_1.setIcon(new ImageIcon(new ImageIcon("src/imagenes/image.jpg").getImage().getScaledInstance(600, 600, getDefaultCloseOperation())));
 		getContentPane().add(lblNewLabel_1);
 		
 		

@@ -159,7 +159,7 @@ public class menu_juego_register extends JFrame {
 		final String PASS = "";
 		Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASS);
 		Statement stmt = conn.createStatement();
-		String sql = "INSERT INTO usuarios (nombre, usuario, contrasena)" + " VALUES (?,?,?)";
+		String sql = "INSERT INTO usuario (nombre, usuario, contrasena)" + " VALUES (?,?,?)";
 		PreparedStatement preparedStatement = conn.prepareStatement(sql);
 		preparedStatement.setString(1, nombre);
 		preparedStatement.setString(2, usuario);

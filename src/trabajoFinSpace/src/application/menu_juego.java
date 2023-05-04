@@ -65,11 +65,11 @@ public class menu_juego extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnRegistrarse = new JButton("Registrarse");
+		JButton btnRegistrarse = new JButton("Iniciar Sesión");
 		btnRegistrarse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			
-				menu_juego_register a = new menu_juego_register();
+				Login a = new Login();
 				a.setVisible(true);
 				
 			}
@@ -111,7 +111,7 @@ public class menu_juego extends JFrame {
 		
 		JLabel lblNewLabel = new JLabel("New label");
 		lblNewLabel.setBounds(0, 0, 686, 513);
-		lblNewLabel.setIcon(new ImageIcon(new ImageIcon("src/imagenes/fondo_menu.jpg").getImage().getScaledInstance(644, 550, getDefaultCloseOperation())));	    
+		lblNewLabel.setIcon(new ImageIcon(new ImageIcon("src/imagenes/fondo_menu.jpg").getImage().getScaledInstance(700, 550, getDefaultCloseOperation())));	    
 		contentPane.add(lblNewLabel);
 		
 

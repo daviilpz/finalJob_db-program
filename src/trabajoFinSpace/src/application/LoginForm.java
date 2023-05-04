@@ -1,6 +1,9 @@
 package application;
 
 import javax.swing.*;
+
+import com.db4o.User;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -57,7 +60,7 @@ public class LoginForm extends JDialog {
 
 
         // Conectando a Database. Preparamos el INSERT
-        final String DB_URL = "jdbc:mysql://localhost/resgistro?serverTimezoneUTC";
+        final String DB_URL = "jdbc:mysql://localhost/registro?serverTimezoneUTC";
         final String USERNAME = "root";
         final String PASS = "";
 
@@ -69,7 +72,7 @@ public class LoginForm extends JDialog {
             System.out.printf("Conexión establecida \n");
 
             // Preparamos la consulta
-            String sql = "SELECT * FROM usuarios WHERE Usuario=? AND Contrasena=?";
+            String sql = "SELECT * FROM usuarios WHERE usuario=? AND contrasena=?";
 
             // Pasamos los datos a la consulta
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
@@ -82,8 +85,8 @@ public class LoginForm extends JDialog {
 
             if (resultSet.next()){
                 user = new User();
-                user.nombre = resultSet.getString("Usuario");
-                user.contrasena = resultSet.getString("Contrasena");
+                user.name = resultSet.getString("Usuario");
+                user.password = resultSet.getString("Contrasena");
 
                 System.out.printf("Consulta realizada con éxito \n");
             }

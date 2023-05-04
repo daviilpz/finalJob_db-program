@@ -7,19 +7,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.JPasswordField;
+
 import java.awt.Color;
 import javax.swing.border.TitledBorder;
 
 import com.db4o.User;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -27,24 +21,80 @@ import java.awt.event.ActionListener;
 public class Login extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	private JPasswordField passwordField;
+	private JTextField tfUsuario;
+	private JPasswordField pfPassword;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Login frame = new Login();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+	public class main {
+	    public static void main(String[] args) {
+	        LoginForm loginForm = new LoginForm(null);
+	        User user = loginForm.user;
+
+	        // System.out.println(user.nombre);
+
+	        if (user != null) {
+	            System.out.println("Autenticado correctamente con el usuario: " + user.name);
+
+	        } else {
+	            System.out.println("Autenticación fallida");
+	        }
+
+	    }
 	}
+	
+	public User user;
+    private User getAuthenticatedUser(String usuario, String password){
+        User user = null;
+
+
+        // Conectando a Database. Preparamos el INSERT
+        final String DB_URL = "jdbc:mysql://localhost/registro?serverTimezoneUTC";
+        final String USERNAME = "root";
+        final String PASS = "";
+
+
+        try {
+            // Abrimos conexión
+            Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASS);
+            Statement stmt = conn.createStatement();
+            System.out.printf("Conexión establecida \n");
+
+            // Preparamos la consulta
+            String sql = "SELECT * FROM usuarios WHERE usuario=? AND contrasena=?";
+
+            // Pasamos los datos a la consulta
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setString(1,usuario);
+            preparedStatement.setString(2, password);
+            System.out.printf("Consulta creada \n");
+
+            // Ejecutamos la consulta
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()){
+                user = new User();
+                user.name = resultSet.getString("Usuario");
+                user.password = resultSet.getString("Contrasena");
+
+                System.out.printf("Consulta realizada con éxito \n");
+            }
+            else {
+                System.out.println("ERROR");
+            }
+
+            stmt.close();
+            System.out.println("Consulta cerrada con éxito \n");
+            conn.close();
+            System.out.printf("Conexión cerrada con éxito \n");
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return user;
+    }
 
 	/**
 	 * Create the frame.
@@ -66,10 +116,10 @@ public class Login extends JFrame {
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		contentPane.add(lblNewLabel);
 		
-		textField = new JTextField();
-		textField.setBounds(169, 163, 150, 26);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		tfUsuario = new JTextField();
+		tfUsuario.setBounds(169, 163, 150, 26);
+		contentPane.add(tfUsuario);
+		tfUsuario.setColumns(10);
 		
 		JLabel lblNewLabel_1 = new JLabel("Contraseña:");
 		lblNewLabel_1.setForeground(new Color(255, 255, 255));
@@ -77,14 +127,39 @@ public class Login extends JFrame {
 		lblNewLabel_1.setBounds(41, 227, 118, 26);
 		contentPane.add(lblNewLabel_1);
 		
-		passwordField = new JPasswordField();
-		passwordField.setBounds(169, 230, 150, 26);
-		contentPane.add(passwordField);
+		pfPassword = new JPasswordField();
+		pfPassword.setBounds(169, 230, 150, 26);
+		contentPane.add(pfPassword);
 		
 		JButton btnNewButton = new JButton("Entrar");
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnNewButton.setBounds(106, 295, 133, 26);
+		btnNewButton.addActionListener(new ActionListener() {
+			@Override
+		public void actionPerformed(ActionEvent e) {
+			
+			
+			 String usuario = tfUsuario.getText();
+             String password = String.valueOf(pfPassword.getPassword());
+
+            user = getAuthenticatedUser(usuario, password);
+
+             if (user != null) {
+                 dispose();
+                 System.out.println("Autenticado correctamente con el usuario: " + user.name);}
+             else {
+                 JOptionPane.showMessageDialog(Login.this,
+                         "Usuario o Contraseña incorrecto",
+                         "Prueba de nuevo",
+                         JOptionPane.ERROR_MESSAGE);
+
+             }
+
+         }
+     });
+		
 		contentPane.add(btnNewButton);
+		
 		
 		JButton btnNewButton_1 = new JButton("Registrate");
 		btnNewButton_1.setBounds(388, 473, 123, 21);

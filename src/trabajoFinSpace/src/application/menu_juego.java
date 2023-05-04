@@ -69,14 +69,14 @@ public class menu_juego extends JFrame {
 		btnRegistrarse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			
-				Login a = new Login();
+				menu_juego_login a = new menu_juego_login();
 				a.setVisible(true);
 				
 			}
 		}
 			);
 		btnRegistrarse.setFont(new Font("Arial", Font.BOLD, 12));
-		btnRegistrarse.setBounds(510, 10, 172, 60);
+		btnRegistrarse.setBounds(490, 10, 145, 49);
 		contentPane.add(btnRegistrarse);
 		
 		JButton btnNewButton_1 = new JButton("Nueva Partida");

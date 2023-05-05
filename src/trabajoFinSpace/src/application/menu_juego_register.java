@@ -157,13 +157,16 @@ public class menu_juego_register extends JFrame {
 		final String DB_URL = "jdbc:mysql://localhost/registro?serverTimezoneUTC";
 		final String USERNAME = "root";
 		final String PASS = "";
+		
 		Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASS);
 		Statement stmt = conn.createStatement();
+		
 		String sql = "INSERT INTO usuarios (nombre, usuario, contrasena)" + " VALUES (?,?,?)";
 		PreparedStatement preparedStatement = conn.prepareStatement(sql);
 		preparedStatement.setString(1, nombre);
 		preparedStatement.setString(2, usuario);
 		preparedStatement.setString(3, contrasena);
+		
 		// Insertamos fila dentro de la tabla
 		int addedRows = preparedStatement.executeUpdate();
 		if (addedRows > 0) {

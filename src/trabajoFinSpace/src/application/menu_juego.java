@@ -48,6 +48,8 @@ public class menu_juego extends JFrame {
 		});
 		
 	}
+	
+	
 
 	/**
 	 * Create the frame.

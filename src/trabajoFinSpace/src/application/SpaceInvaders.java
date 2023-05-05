@@ -105,7 +105,13 @@ public class SpaceInvaders extends Application {
 			gc.setFill(Color.YELLOW);
 			gc.fillText("Game Over! \n Tu puntuación ha sido de: " + score + " puntos" + " \n Haz click para jugar de nuevo.", WIDTH / 2, HEIGHT /2.5);
 		//	return;
+			menu_juego_login.recibirscore(score);
+			menu_juego_login.GuardarScoreBBDD();
 		}
+		
+		
+		
+		
 		univ.forEach(Universe::draw);
 	
 		player.update();

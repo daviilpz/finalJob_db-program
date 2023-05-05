@@ -1,23 +1,27 @@
 package application;
 
-import java.awt.EventQueue;
-
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.sql.*;
-
-import javax.swing.border.EmptyBorder;
-
 import java.awt.Color;
-import javax.swing.border.TitledBorder;
-
-import com.db4o.User;
-
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import javax.swing.border.TitledBorder;
+
+import com.db4o.User;
 
 
 
@@ -27,7 +31,9 @@ public class menu_juego_login extends JFrame {
 	private JPanel contentPane;
 	private JTextField tfUsuario;
 	private JPasswordField pfPassword;
-
+	public static User usuarioFinal = new User();
+	public static ConexionMySQL conection = new ConexionMySQL("usuario", "pass", "bd");
+	public static int scoreFinal;
 	/**
 	 * Launch the application.
 	 */
@@ -35,6 +41,9 @@ public class menu_juego_login extends JFrame {
 	    public static void main(String[] args) {
 	        menu_juego_login login_usuarios = new menu_juego_login();
 	        User user = login_usuarios.user;
+	        usuarioFinal = user;
+	        
+	        
 
 	        // System.out.println(user.nombre);
 
@@ -99,6 +108,59 @@ public class menu_juego_login extends JFrame {
 
         return user;
     }
+    //Recibimos la puntuacion final
+    public static void recibirscore(int score) 
+    {
+    	 scoreFinal = score;
+   
+    }
+    
+    public static void GuardarScoreBBDD() 
+    {	// Conectando a Database. Preparamos el INSERT
+        final String DB_URL = "jdbc:mysql://localhost/registro?serverTimezoneUTC";
+        final String USERNAME = "root";
+        final String PASS = "";
+
+        Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASS);
+        Statement stmt = conn.createStatement();
+        String sql = "INSERT INTO Ranking (usuario, puntuacion)" +
+                " VALUES (?,?)";
+
+        PreparedStatement preparedStatement = conn.prepareStatement(sql);
+        preparedStatement.setString(1, usuarioFinal.name);
+        preparedStatement.setInt(2, scoreFinal);
+
+        // Insertamos fila dentro de la tabla
+        int addedRows = preparedStatement.executeUpdate();
+        if (addedRows > 0) {
+        	user = new User();
+			user.name = nombre;
+			user.password = contrasena;
+        }
+    	/*final String DB_URL = "jdbc:mysql://localhost/registro?serverTimezoneUTC";
+		final String USERNAME = "root";
+		final String PASS = "";
+		
+	//	Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASS);
+//		Statement stmt = conn.createStatement();
+
+    	// Creamos la consulta SQL con los parámetros como interrogantes (?)
+		String sql = "INSERT INTO usuarios (usuario, puntuacion)" + " VALUES (?,?)";
+		
+        // Creamos un objeto PreparedStatement para preparar la consulta y asignar los valores de los parámetros
+        PreparedStatement statement = conection.ejecutarInsertDeleteUpdate(sql);
+		//PreparedStatement statement = conn.prepareStatement(sql);
+
+        statement.setString(1, usuarioFinal.name);
+        statement.setInt(2, scoreFinal);
+    	try {
+			conection.ejecutarInsertDeleteUpdate(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
+    }
+    
 
 	/**
 	 * Create the frame.

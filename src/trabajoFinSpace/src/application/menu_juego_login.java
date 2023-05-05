@@ -1,6 +1,7 @@
 package application;
 
 import java.awt.EventQueue;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -18,7 +19,10 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Login extends JFrame {
+
+
+
+public class menu_juego_login extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField tfUsuario;
@@ -29,8 +33,8 @@ public class Login extends JFrame {
 	 */
 	public class main {
 	    public static void main(String[] args) {
-	        LoginForm loginForm = new LoginForm(null);
-	        User user = loginForm.user;
+	        menu_juego_login login_usuarios = new menu_juego_login();
+	        User user = login_usuarios.user;
 
 	        // System.out.println(user.nombre);
 
@@ -99,7 +103,7 @@ public class Login extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Login() {
+	public menu_juego_login() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 700, 550);
 		setLocationRelativeTo(null);
@@ -134,6 +138,7 @@ public class Login extends JFrame {
 		JButton btnNewButton = new JButton("Entrar");
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnNewButton.setBounds(106, 295, 133, 26);
+		
 		btnNewButton.addActionListener(new ActionListener() {
 			@Override
 		public void actionPerformed(ActionEvent e) {
@@ -148,7 +153,7 @@ public class Login extends JFrame {
                  dispose();
                  System.out.println("Autenticado correctamente con el usuario: " + user.name);}
              else {
-                 JOptionPane.showMessageDialog(Login.this,
+                 JOptionPane.showMessageDialog(menu_juego_login.this,
                          "Usuario o Contraseña incorrecto",
                          "Prueba de nuevo",
                          JOptionPane.ERROR_MESSAGE);
@@ -173,6 +178,17 @@ public class Login extends JFrame {
 			}
 		}
 				);
+		
+		JButton btnNewButton_2 = new JButton("Cancelar");
+		btnNewButton_2.setBounds(106, 345, 133, 26);
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		btnNewButton_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnNewButton_2.setBounds(262, 295, 133, 26);
+		contentPane.add(btnNewButton_2);
 		
 		JLabel lblNewLabel_2 = new JLabel("¿Todavía no estás registrado? Clic en el botón ->");
 		lblNewLabel_2.setForeground(new Color(255, 255, 255));

@@ -1,6 +1,7 @@
 package application;
 
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -106,7 +107,12 @@ public class SpaceInvaders extends Application {
 			gc.fillText("Game Over! \n Tu puntuación ha sido de: " + score + " puntos" + " \n Haz click para jugar de nuevo.", WIDTH / 2, HEIGHT /2.5);
 		//	return;
 			menu_juego_login.recibirscore(score);
-			menu_juego_login.GuardarScoreBBDD();
+			try {
+				menu_juego_login.GuardarScoreBBDD();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 		
 		

@@ -31,7 +31,8 @@ public class menu_juego_login extends JFrame {
 	private JPanel contentPane;
 	private JTextField tfUsuario;
 	private JPasswordField pfPassword;
-	public static User usuarioFinal = new User();
+	public static String usuarioFinal2;
+	public static String usuarioFinal;
 	public static ConexionMySQL conection = new ConexionMySQL("usuario", "pass", "bd");
 	public static int scoreFinal;
 	/**
@@ -41,7 +42,7 @@ public class menu_juego_login extends JFrame {
 	    public static void main(String[] args) {
 	        menu_juego_login login_usuarios = new menu_juego_login();
 	        User user = login_usuarios.user;
-	        usuarioFinal = user;
+	        usuarioFinal = "%"+ login_usuarios.user +"%";
 	        
 	        
 
@@ -115,7 +116,12 @@ public class menu_juego_login extends JFrame {
    
     }
     
-    public static void GuardarScoreBBDD() 
+    
+    public static void recibiruser(String usuarioFinal) {
+    	usuarioFinal2 = usuarioFinal;
+    }
+    
+    public static void GuardarScoreBBDD() throws SQLException 
     {	// Conectando a Database. Preparamos el INSERT
         final String DB_URL = "jdbc:mysql://localhost/registro?serverTimezoneUTC";
         final String USERNAME = "root";
@@ -123,43 +129,20 @@ public class menu_juego_login extends JFrame {
 
         Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASS);
         Statement stmt = conn.createStatement();
-        String sql = "INSERT INTO Ranking (usuario, puntuacion)" +
-                " VALUES (?,?)";
+        String sql = "INSERT INTO ranking (usuario, puntuacion)" + " VALUES (?,?)";
 
         PreparedStatement preparedStatement = conn.prepareStatement(sql);
-        preparedStatement.setString(1, usuarioFinal.name);
+        preparedStatement.setString(1, "%" + usuarioFinal + "%");
         preparedStatement.setInt(2, scoreFinal);
-
-        // Insertamos fila dentro de la tabla
-        int addedRows = preparedStatement.executeUpdate();
-        if (addedRows > 0) {
-        	user = new User();
-			user.name = nombre;
-			user.password = contrasena;
-        }
-    	/*final String DB_URL = "jdbc:mysql://localhost/registro?serverTimezoneUTC";
-		final String USERNAME = "root";
-		final String PASS = "";
-		
-	//	Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASS);
-//		Statement stmt = conn.createStatement();
-
-    	// Creamos la consulta SQL con los parámetros como interrogantes (?)
-		String sql = "INSERT INTO usuarios (usuario, puntuacion)" + " VALUES (?,?)";
-		
-        // Creamos un objeto PreparedStatement para preparar la consulta y asignar los valores de los parámetros
-        PreparedStatement statement = conection.ejecutarInsertDeleteUpdate(sql);
-		//PreparedStatement statement = conn.prepareStatement(sql);
-
-        statement.setString(1, usuarioFinal.name);
-        statement.setInt(2, scoreFinal);
-    	try {
-			conection.ejecutarInsertDeleteUpdate(sql);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
-    }
+        
+        preparedStatement.executeUpdate();
+        
+     		// Cerramos conexión
+     		stmt.close();
+     		conn.close();
+     	}
+    
+   
     
 
 	/**

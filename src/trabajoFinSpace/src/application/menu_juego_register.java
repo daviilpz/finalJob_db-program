@@ -21,6 +21,7 @@ public class menu_juego_register extends JFrame {
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		getContentPane().setLayout(null);
 		
+// Contenedores del jframe
 		JButton btnEnviar = new JButton("Enviar");
 		btnEnviar.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnEnviar.setBounds(158, 371, 106, 37);

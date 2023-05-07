@@ -7,8 +7,10 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.IntStream;
 import javafx.animation.KeyFrame;
+import javafx.animation.PauseTransition;
 import javafx.animation.Timeline;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -20,6 +22,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import java.lang.Thread;
+
 
 public class SpaceInvaders extends Application {
 	
@@ -50,6 +54,7 @@ public class SpaceInvaders extends Application {
 	boolean gameOver = false;
 	private GraphicsContext gc;
 	
+	
 	Rocket player;
 	List<Shot> shots;
 	List<Universe> univ;
@@ -71,7 +76,7 @@ public class SpaceInvaders extends Application {
 			if(shots.size() < MAX_SHOTS) shots.add(player.shoot());
 			if(gameOver) { 
 				gameOver = false;
-				setup();
+				//setup();
 			}
 		});
 		setup();
@@ -105,7 +110,7 @@ public class SpaceInvaders extends Application {
 			gc.setFont(Font.font(35));
 			gc.setFill(Color.YELLOW);
 			gc.fillText("Game Over! \n Tu puntuación ha sido de: " + score + " puntos" + " \n Haz click para jugar de nuevo.", WIDTH / 2, HEIGHT /2.5);
-		//	return;
+		
 			menu_juego_login.recibirscore(score);
 			try {
 				menu_juego_login.GuardarScoreBBDD();
@@ -113,6 +118,14 @@ public class SpaceInvaders extends Application {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			Platform.exit();
+	
 		}
 		
 		

@@ -9,6 +9,7 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.imageio.ImageIO;
@@ -103,6 +104,15 @@ public class menu_juego extends JFrame {
 		JButton btnNewButton_3 = new JButton("Ranking");
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Ranking a = null;
+				try {
+					a = new Ranking();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				a.setVisible(true);
+				
 			}
 		});
 		
@@ -110,6 +120,12 @@ public class menu_juego extends JFrame {
 		btnNewButton_3.setFont(new Font("Arial", Font.BOLD, 20));
 		btnNewButton_3.setBounds(184, 211, 288, 84);
 		contentPane.add(btnNewButton_3);
+		
+		JLabel lblNewLabel_2 = new JLabel("Al finalizar la partida comprueba tu puntuacion en Ranking");
+		lblNewLabel_2.setForeground(new Color(255, 255, 255));
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblNewLabel_2.setBounds(14, 472, 417, 19);
+		contentPane.add(lblNewLabel_2);
 		
 		JLabel lblNewLabel = new JLabel("New label");
 		lblNewLabel.setBounds(0, 0, 686, 513);

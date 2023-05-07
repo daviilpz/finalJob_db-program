@@ -1,13 +1,9 @@
-/**
- * 
- */
-/**
- * @author Rafa2
- *
- */
-module Trabajo_FINDECURSO {
+module trabajoFinSpace {
+	requires javafx.controls;
+	requires javafx.graphics;
 	requires java.desktop;
-	requires java.sql;
-	requires java.base;
 	requires db4o;
+	requires java.sql;
+	
+	opens application to javafx.graphics, javafx.fxml;
 }
